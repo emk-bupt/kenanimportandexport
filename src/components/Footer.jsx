@@ -32,7 +32,7 @@ const Footer = () => {
         {/* Main Content */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight max-w-4xl mx-auto">
-            شو بتنتظر؟ أبدأ مشروعك الأن
+            شو بتنتظر؟ ابدأ مشروعك الأن
           </h2>
 
           <a
