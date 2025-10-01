@@ -28,8 +28,8 @@ const AboutUsSection = () => {
 
   const stats = [
     { number: "25+", label: "سنة خبرة", icon: "⏳", delay: "0s" },
-    { number: "500+", label: "مصنع و مورد", icon: "🏭", delay: "0.2s" },
-    { number: "1000+", label: "عميل راضٍ", icon: "🤝", delay: "0.4s" },
+    { number: "200+", label: "مصنع و مورد", icon: "🏭", delay: "0.2s" },
+    { number: "300+", label: "عميل راضٍ", icon: "🤝", delay: "0.4s" },
     { number: "100%", label: "موثوقية", icon: "✅", delay: "0.6s" },
   ];
 

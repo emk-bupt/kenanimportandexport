@@ -56,7 +56,7 @@ const ContactUsPage = () => {
                 <span className="text-2xl mt-1">📧</span>
                 <div>
                   <h4 className="font-bold text-white">البريد الإلكتروني</h4>
-                  <p className="font-mono">mkhattab10@hotmail.com</p>
+                  <p className="font-mono">kenanimpexp@gmail.com</p>
                 </div>
               </div>
 

@@ -6,7 +6,78 @@ const HeroSection = () => {
     "w-[230px] sm:w-[280px] md:w-[340px] h-auto drop-shadow-lg rounded-lg ";
   const arabMapClasses =
     "w-[260px] sm:w-[310px] md:w-[420px] h-auto drop-shadow-lg rounded-lg";
-
+  const arabCountries = [
+    {
+      code: "sa",
+      top: "50%",
+      left: "2.5rem",
+      anim: "animate-float1",
+      size: "text-5xl",
+    },
+    {
+      code: "ae",
+      top: "5rem",
+      right: "5rem",
+      anim: "animate-float2",
+      size: "text-6xl",
+    },
+    {
+      code: "eg",
+      top: "8rem",
+      left: "25%",
+      anim: "animate-float3",
+      size: "text-5xl",
+    },
+    {
+      code: "jo",
+      top: "10rem",
+      right: "33.33%",
+      anim: "animate-float4",
+      size: "text-5xl",
+    },
+    {
+      code: "kw",
+      top: "13rem",
+      left: "33.33%",
+      anim: "animate-float5",
+      size: "text-6xl",
+    },
+    {
+      code: "qa",
+      top: "16rem",
+      right: "25%",
+      anim: "animate-float6",
+      size: "text-5xl",
+    },
+    {
+      code: "lb",
+      bottom: "5rem",
+      left: "2.5rem",
+      anim: "animate-float7",
+      size: "text-5xl",
+    },
+    {
+      code: "ma",
+      bottom: "8rem",
+      right: "4rem",
+      anim: "animate-float8",
+      size: "text-6xl",
+    },
+    {
+      code: "iq",
+      bottom: "11rem",
+      left: "25%",
+      anim: "animate-float9",
+      size: "text-5xl",
+    },
+    {
+      code: "ps",
+      top: "15.5rem",
+      left: "50%",
+      anim: "animate-float11",
+      size: "text-6xl",
+    },
+  ];
   return (
     <section
       className="relative min-h-screen bg-gradient-to-br from-slate-600 via-blue-800 to-slate-700 flex flex-col md:flex-row items-center justify-center overflow-hidden"
@@ -14,55 +85,39 @@ const HeroSection = () => {
     >
       {/* Floating Flags Background Animation */}
       <div className="absolute inset-0 pointer-events-none z-5 overflow-hidden">
-        {/* Arab Countries Flags - Bigger */}
-        <div className="absolute top-50 left-10 text-5xl animate-float1 opacity-40">
-          🇸🇦
-        </div>
-        <div className="absolute top-20 right-20 text-6xl animate-float2 opacity-35">
-          🇦🇪
-        </div>
-        <div className="absolute top-32 left-1/4 text-5xl animate-float3 opacity-40">
-          🇪🇬
-        </div>
-        <div className="absolute top-40 right-1/3 text-5xl animate-float4 opacity-35">
-          🇯🇴
-        </div>
-        <div className="absolute top-52 left-1/3 text-6xl animate-float5 opacity-40">
-          🇰🇼
-        </div>
-        <div className="absolute top-64 right-1/4 text-5xl animate-float6 opacity-35">
-          🇶🇦
-        </div>
-        <div className="absolute bottom-20 left-20 text-5xl animate-float7 opacity-40">
-          🇱🇧
-        </div>
-        <div className="absolute bottom-32 right-16 text-6xl animate-float8 opacity-35">
-          🇲🇦
-        </div>
-        <div className="absolute bottom-44 left-1/4 text-5xl animate-float9 opacity-40">
-          🇮🇶
-        </div>
-        <div className="absolute top-62 left-1/2 text-6xl animate-float11 opacity-45">
-          🇵🇸
-        </div>
+        {/* Arab Countries Flags - Fixed for Chrome/Edge */}
+        {arabCountries.map((country, idx) => (
+          <div
+            key={idx}
+            className={`absolute ${country.anim} opacity-40`}
+            style={{
+              top: country.top,
+              bottom: country.bottom,
+              left: country.left,
+              right: country.right,
+              width: "48px",
+              height: "25px",
+              opacity: 0.4,
+              zIndex: -1,
+            }}
+          >
+            <img
+              src={`https://flagcdn.com/w40/${country.code}.png`}
+              alt=""
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))}
 
-        {/* Chinese Flags - Bigger */}
-        <div className="absolute top-16 right-12 text-6xl animate-spin-slow opacity-30">
-          🇨🇳
+        {/* Chinese Flag - Image version (optional but safe) */}
+        <div className="absolute top-18 right-12 w-16 h-12 animate-spin-slow opacity-30">
+          <img
+            src="https://flagcdn.com/w40/cn.png"
+            alt=""
+            className="w-full h-full object-cover"
+          />
         </div>
-        <div className="absolute top-28 left-16 text-5xl animate-bounce-slow opacity-35">
-          🇨🇳
-        </div>
-        <div className="absolute top-48 right-1/5 text-7xl animate-pulse-slow opacity-30">
-          🇨🇳
-        </div>
-        <div className="absolute bottom-28 left-12 text-5xl animate-float-reverse opacity-35">
-          🇨🇳
-        </div>
-        <div className="absolute bottom-48 right-20 text-6xl animate-spin-reverse opacity-30">
-          🇨🇳
-        </div>
-
         {/* Ships Animation */}
         <div className="absolute top-1/2 left-0 text-4xl animate-ship1 opacity-50">
           🚢
@@ -120,7 +175,7 @@ const HeroSection = () => {
         </div>
         <div className="absolute bottom-24 right-1/4 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float9">
           <div className="text-center">义乌</div>
-          <div className="text-sm text-amber-300/40">ييوو</div>
+          <div className="text-sm text-amber-300/40">إيوو</div>
         </div>
         <div className="absolute top-44 right-1/3 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float2">
           <div className="text-center">杭州</div>
@@ -136,9 +191,9 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="relative flex flex-col md:flex-row items-center justify-center w-full h-full px-4 md:px-8 gap-8 md:gap-16">
+      <div className="relative flex flex-col md:flex-row items-center justify-center w-full h-full px-4 md:px-8 gap-8 md:gap-16 ">
         {/* Arab Countries Map - LEFT on PC, RIGHT on Mobile */}
-        <div className="relative transition-all duration-1000 animate-fadeInScale order-2 md:order-3 z-10">
+        <div className="relative transition-all duration-1000 animate-fadeInScale order-2 md:order-3 z-10 -translate-y-[10px] md:-translate-y-[80px]">
           <img
             src="/images/middle_east_map.png"
             alt="البلدان العربية"
@@ -150,7 +205,7 @@ const HeroSection = () => {
         </div>
 
         {/* China Map - RIGHT on PC, LEFT on Mobile */}
-        <div className="relative transition-all duration-1000 animate-fadeInScale order-1 md:order-1 z-10">
+        <div className="relative transition-all duration-1000 animate-fadeInScale order-1 md:order-1 z-10 -translate-y-[10px] md:-translate-y-[80px]">
           <img src="/images/china_map.png" alt="الصين" className={mapClasses} />
           <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
             الصين
@@ -158,7 +213,7 @@ const HeroSection = () => {
         </div>
 
         {/* Hero Content - Center on PC, BOTTOM on Mobile */}
-        <div className="relative z-30 text-center max-w-3xl mx-auto order-3 md:order-2 pt-z md:pt-90">
+        <div className="relative z-30 text-center max-w-3xl mx-auto order-3 md:order-2 pt-z md:pt-70">
           <h1
             className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight transition-all duration-1000 animate-fadeInUp "
             style={{
@@ -166,7 +221,7 @@ const HeroSection = () => {
               textShadow: "0 4px 20px rgba(0,0,0,0.9)",
             }}
           >
-            <span className="block text-white drop-shadow-2xl mb-2 text-4xl sm:text-4xl md:text-5xl lg:text-6xl">
+            <span className="block text-white drop-shadow-2xl mb-2 text-4xl sm:text-4xl md:text-5xl lg:text-7xl">
               مشروعك من{" "}
               <span className=" text-red-600 drop-shadow-2xl mb-2">الصين </span>
             </span>
@@ -220,12 +275,12 @@ const HeroSection = () => {
         {/* PC: Right → Left - CONNECTING MAP EDGES */}
         <path
           id="flightPathPC"
-          d="M990,300 Q700,250 550,300 Q400,350 270,300"
+          d="M999,220 Q700,170 550,220 Q400,270 270,220"
           fill="none"
           stroke="url(#flightGradient)"
           strokeWidth="4"
           strokeDasharray="20,8"
-          className="stroke-current hidden md:block text-green-600 "
+          className="stroke-current hidden md:block text-green-600"
         />
         <g className="hidden md:block">
           <circle r="6" fill="#fff">

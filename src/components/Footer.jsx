@@ -21,8 +21,8 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: FaTiktok, href: "#", label: "TikTok" },
-    { icon: FaInstagram, href: "#", label: "Instagram" },
-    { icon: FaFacebook, href: "#", label: "Facebook" },
+    { icon: FaInstagram, href: "https://www.instagram.com/kenanimpexp/", label: "Instagram" },
+    { icon: FaFacebook, href: "https://www.facebook.com/profile.php?id=61581469569569", label: "Facebook" },
     { icon: FaTelegramPlane, href: "#", label: "Telegram" },
   ];
 
@@ -36,7 +36,7 @@ const Footer = () => {
           </h2>
 
           <a
-            href="https://wa.me/+962787557794"
+            href=""
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group"

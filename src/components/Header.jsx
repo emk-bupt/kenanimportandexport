@@ -11,7 +11,7 @@ import {
   X,
   ChevronDownIcon,
   GlobeIcon,
-  BriefcaseBusiness
+  BriefcaseBusiness,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
@@ -48,28 +48,28 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header 
+    <header
       className={`fixed w-full top-0 left-0 z-50 transition-all duration-500 ease-in-out ${
-        isScrolled 
-          ? "bg-gradient-to-r from-slate-400/90 to-blue-500/90 backdrop-blur-lg shadow-xl border-b border-blue-500/30" 
-          : "bg-gradient-to-r from-slate-400/80 to-blue-500/80 backdrop-blur-md shadow-lg border-b border-blue-500/20"
+        isScrolled
+          ? "bg-white backdrop-blur-lg shadow-xl border-b border-gray-200"
+          : "bg-white backdrop-blur-md shadow-lg border-b border-gray-100"
       }`}
     >
       <div className="flex h-14 items-center px-4 md:px-8 max-w-8xl mx-auto">
         {/* Mobile/Tablet - Burger menu */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-blue-100 hover:text-amber-300 transition-all duration-300 transform hover:scale-110 p-1 rounded-lg hover:bg-blue-700/30"
+          className="lg:hidden text-blue-500 hover:text-blue-300 transition-all duration-300 transform hover:scale-110 p-1 rounded-lg hover:bg-blue-700/30"
         >
           <div className="relative w-6 h-6">
-            <Menu 
-              size={24} 
+            <Menu
+              size={24}
               className={`absolute inset-0 transition-all duration-300 ${
                 isOpen ? "opacity-0 rotate-180" : "opacity-100 rotate-0"
               }`}
             />
-            <X 
-              size={24} 
+            <X
+              size={24}
               className={`absolute inset-0 transition-all duration-300 ${
                 isOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-180"
               }`}
@@ -80,10 +80,10 @@ export default function Navbar() {
         {/* Mobile/Tablet Logo Center */}
         <div className="flex-shrink-0 lg:hidden flex-1 flex justify-center">
           <a href="/" className="block group">
-            <Image 
-              src={logoImg} 
-              alt="Logo" 
-              width={120} 
+            <Image
+              src={logoImg}
+              alt="Logo"
+              width={120}
               height={40}
               className="h-55 w-auto transition-transform duration-300 group-hover:scale-105"
               priority
@@ -94,10 +94,10 @@ export default function Navbar() {
         {/* Desktop Logo Left */}
         <div className="hidden lg:flex flex-shrink-0 lg:mr-8">
           <a href="/" className="block group">
-            <Image 
-              src={logoImg} 
-              alt="Logo" 
-              width={120} 
+            <Image
+              src={logoImg}
+              alt="Logo"
+              width={120}
               height={100}
               className="h-55 w-auto transition-transform duration-300 group-hover:scale-105"
               priority
@@ -113,12 +113,15 @@ export default function Navbar() {
               <a
                 key={i}
                 href={link.href}
-                className="relative flex items-center gap-2 text-blue-100 hover:text-amber-300 font-medium px-4 py-2 rounded-lg transition-all duration-300 group hover:bg-blue-700/30"
+                className="relative flex items-center gap-2 text-blue-900 hover:text-blue-900 font-bold px-4 py-2 rounded-lg transition-all duration-300 group hover:bg-blue-50"
               >
-                <Icon size={16} className="transition-transform duration-300 group-hover:scale-110" />
+                <Icon
+                  size={16}
+                  className="text-blue-600 transition-transform duration-300 group-hover:scale-110"
+                />
                 <span className="relative">
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </a>
             );
@@ -144,20 +147,27 @@ export default function Navbar() {
               onClick={() => setIsLangOpen(!isLangOpen)}
               className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-700/30 transition-all duration-300 group"
             >
-              <GlobeIcon size={18} className="text-blue-200 group-hover:text-amber-300 transition-colors duration-300" />
+              <GlobeIcon
+                size={18}
+                className="text-blue-200 group-hover:text-amber-300 transition-colors duration-300"
+              />
               <span className="text-xl">{selectedLang.flag}</span>
-              <ChevronDownIcon 
-                size={16} 
+              <ChevronDownIcon
+                size={16}
                 className={`text-blue-200 transition-all duration-300 ${
                   isLangOpen ? "rotate-180 text-amber-300" : "rotate-0"
                 }`}
               />
             </button>
-            
+
             {/* Language Dropdown Menu */}
-            <div className={`absolute right-0 top-full mt-2 w-48 bg-slate-800/95 backdrop-blur-xl rounded-xl shadow-2xl border border-blue-600/30 overflow-hidden transition-all duration-300 origin-top-right ${
-              isLangOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
-            }`}>
+            <div
+              className={`absolute right-0 top-full mt-2 w-48 bg-slate-800/95 backdrop-blur-xl rounded-xl shadow-2xl border border-blue-600/30 overflow-hidden transition-all duration-300 origin-top-right ${
+                isLangOpen
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+              }`}
+            >
               {languages.map((lang) => (
                 <button
                   key={lang.code}
@@ -168,7 +178,9 @@ export default function Navbar() {
                   className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-700/40 transition-all duration-200 text-right text-blue-100"
                 >
                   <span className="text-xl">{lang.flag}</span>
-                  <span className="font-medium hover:text-amber-300">{lang.name}</span>
+                  <span className="font-medium hover:text-amber-300">
+                    {lang.name}
+                  </span>
                   {selectedLang.code === lang.code && (
                     <div className="w-2 h-2 bg-amber-400 rounded-full ml-auto"></div>
                   )}
@@ -193,9 +205,11 @@ export default function Navbar() {
       </div>
 
       {/* Mobile/Tablet Menu */}
-      <div className={`lg:hidden bg-gradient-to-br from-slate-800/95 to-blue-900/95 backdrop-blur-xl shadow-xl transition-all duration-500 ease-out overflow-hidden ${
-        isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-      }`}>
+      <div
+        className={`lg:hidden bg-gradient-to-br from-slate-100/95 to-white/95 backdrop-blur-xl shadow-xl transition-all duration-500 ease-out overflow-hidden ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
         <div className="p-6 space-y-2">
           {navigationLinks.map((link, i) => {
             const Icon = link.icon;
@@ -203,13 +217,15 @@ export default function Navbar() {
               <a
                 key={i}
                 href={link.href}
-                className="flex items-center gap-3 py-3 px-4 text-lg font-medium text-blue-100 hover:text-amber-300 rounded-xl hover:bg-blue-700/30 transition-all duration-300 transform hover:translate-x-2 group"
+                className="flex items-center gap-3 py-3 px-4 text-lg font-medium text-blue-800 hover:text-blue-600 rounded-xl hover:bg-blue-50 transition-all duration-300 transform hover:translate-x-2 group"
                 onClick={() => setIsOpen(false)}
-                style={{ animationDelay: `${i * 50}ms` }}
               >
-                <Icon size={20} className="transition-transform duration-300 group-hover:scale-110" />
+                <Icon
+                  size={20}
+                  className="text-blue-600 transition-transform duration-300 group-hover:scale-110"
+                />
                 <span>{link.label}</span>
-                <div className="w-0 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-300 transition-all duration-300 group-hover:w-6 ml-auto"></div>
+                <div className="w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-6 ml-auto"></div>
               </a>
             );
           })}
@@ -218,8 +234,8 @@ export default function Navbar() {
 
       {/* Backdrop for language dropdown */}
       {isLangOpen && (
-        <div 
-          className="fixed inset-0 z-40" 
+        <div
+          className="fixed inset-0 z-40"
           onClick={() => setIsLangOpen(false)}
         ></div>
       )}
