@@ -41,7 +41,7 @@ const AboutUsSection = () => {
     { icon: "💵", text: "أقل الاسعار الممكنة", color: "from-orange-500 to-orange-600" },
     { icon: "🌐", text: "الترجمة الاحترافية", color: "from-pink-500 to-pink-600" },
     { icon: "🎯", text: "المرافقة التجارية", color: "from-amber-500 to-amber-600" },
-    { icon: "🏭", text: "وصل مباشر للمصانع والموردين", color: "from-indigo-500 to-indigo-600" },
+    { icon: "🏭", text: "وصول مباشر للمصانع والموردين", color: "from-indigo-500 to-indigo-600" },
   ];
 
   return (
