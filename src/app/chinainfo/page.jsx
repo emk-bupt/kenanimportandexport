@@ -319,7 +319,7 @@ const BlogPage = () => {
       <section className="relative z-10 py-16 px-4">
         <div className="text-center">
           <button
-            onClick={() => window.open("https://wa.me/+962787557794", "_blank")}
+            onClick={() => window.open("", "_blank")}
             className="group relative inline-block bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-500 text-slate-900 px-12 py-4 rounded-2xl text-xl md:text-2xl font-black hover:from-amber-400 hover:to-yellow-400 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-4 border-white/20 backdrop-blur-sm overflow-hidden cursor-pointer shadow-2xl"
           >
             <span className="relative z-10 flex items-center gap-3">

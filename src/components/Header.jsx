@@ -193,7 +193,7 @@ export default function Navbar() {
         {/* Mobile/Tablet WhatsApp */}
         <div className="flex lg:hidden items-center gap-3">
           <a
-            href="https://wa.me/+962787557794"
+            href=""
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white p-2.5 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-110 shadow-lg"

@@ -3,7 +3,7 @@ import React from "react";
 
 const ContactUsPage = () => {
   const openWhatsApp = () => {
-    window.open("https://wa.me/+962787557794", "_blank");
+    window.open("", "_blank");
   };
 
   return (

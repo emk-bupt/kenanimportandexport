@@ -260,7 +260,7 @@ const FAQPage = () => {
             تواصل معنا وسنكون سعداء لمساعدتك
           </p>
           <button
-            onClick={() => window.open("https://wa.me/+962787557794", "_blank")}
+            onClick={() => window.open("", "_blank")}
             className="group relative inline-block bg-gradient-to-r from-green-500 via-green-600 to-green-500 text-white px-12 py-4 rounded-2xl text-xl md:text-2xl font-black hover:from-green-400 hover:to-green-500 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-4 border-white/20 backdrop-blur-sm overflow-hidden cursor-pointer shadow-2xl"
           >
             <span className="relative z-10 flex items-center gap-3">
