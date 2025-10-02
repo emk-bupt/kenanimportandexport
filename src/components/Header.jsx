@@ -140,11 +140,11 @@ export default function Navbar() {
           : "bg-white backdrop-blur-md shadow-lg border-b border-gray-100"
       }`}
     >
-      <div className="flex h-13 items-center px-4 md:px-9 max-w-8xl mx-auto">
-        {/* زر القائمة (موبايل) */}
+      <div className="flex h-13 items-center px-4 md:px-9 max-w-8xl mx-auto relative">
+        {/* زر القائمة (يسار على الموبايل) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-blue-500 hover:text-blue-300 transition-all duration-300 transform hover:scale-110 p-1 rounded-lg hover:bg-blue-700/30"
+          className="lg:hidden text-blue-500 hover:text-blue-300 transition-all duration-300 transform hover:scale-110 p-1 rounded-lg hover:bg-blue-700/30 z-10"
           aria-label="Toggle menu"
         >
           <div className="relative w-6 h-6">
@@ -163,8 +163,8 @@ export default function Navbar() {
           </div>
         </button>
 
-        {/* شعار الجوال (في المنتصف) */}
-        <div className="flex-shrink-0 lg:hidden flex-1 flex justify-center">
+        {/* شعار الجوال - مثبت في المنتصف الحقيقي */}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:hidden z-10">
           <a href="/" className="block group">
             <Image
               src={logoImg}
@@ -298,8 +298,13 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* موبايل: اللغة + واتساب */}
-        <div className="flex lg:hidden items-center gap-3">
+        {/* يمين الموبايل: اللغة + واتساب */}
+        <div
+          className={`flex lg:hidden items-center gap-3 ${
+            isRTL ? "mr-auto" : "ml-auto"
+          }`}
+        >
+          {/* Language & WhatsApp buttons — same as before */}
           <div className="relative">
             <button
               onClick={() => setIsLangOpen(!isLangOpen)}
@@ -336,7 +341,7 @@ export default function Navbar() {
           </div>
 
           <a
-            href="https://wa.me/+962787557794"
+            href="https://wa.me/+8613681046887"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white p-2.5 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-110 shadow-lg"
