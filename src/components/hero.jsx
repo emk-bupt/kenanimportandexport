@@ -1,91 +1,129 @@
 "use client";
 import React from "react";
+import { useLanguage } from "../app/context/LanguageContext";
+
+const translations = {
+  ar: {
+    titleLine1: "مشروعك من",
+    titleLine2: "الصين",
+    titleLine3: "صار أسهل!",
+    titleLine4: "مع حلولنا السريعة والموثوقة",
+    cta: "ابدأ الآن",
+    chinaLabel: "الصين",
+    arabLabel: "البلدان العربية",
+    cities: {
+      guangzhou: "قوانجو",
+      shenzhen: "شنجن",
+      shanghai: "شنغهاي",
+      beijing: "بكين",
+      yiwu: "إيوو",
+      hangzhou: "هانغجو",
+      ningbo: "نينغبو",
+      tianjin: "تيانجين",
+    },
+  },
+  en: {
+    titleLine1: "Your business from",
+    titleLine2: "China",
+    titleLine3: "Just got easier!",
+    titleLine4: "With our fast & reliable solutions",
+    cta: "Get Started",
+    chinaLabel: "China",
+    arabLabel: "Arab Countries",
+    cities: {
+      guangzhou: "Guangzhou",
+      shenzhen: "Shenzhen",
+      shanghai: "Shanghai",
+      beijing: "Beijing",
+      yiwu: "Yiwu",
+      hangzhou: "Hangzhou",
+      ningbo: "Ningbo",
+      tianjin: "Tianjin",
+    },
+  },
+  zh: {
+    titleLine1: "您的业务从",
+    titleLine2: "中国",
+    titleLine3: "变得更简单了！",
+    titleLine4: "借助我们快速可靠的解决方案",
+    cta: "立即开始",
+    chinaLabel: "中国",
+    arabLabel: "阿拉伯国家",
+    cities: {
+      guangzhou: "广州",
+      shenzhen: "深圳",
+      shanghai: "上海",
+      beijing: "北京",
+      yiwu: "义乌",
+      hangzhou: "杭州",
+      ningbo: "宁波",
+      tianjin: "天津",
+    },
+  },
+  fr: {
+    titleLine1: "Votre projet depuis",
+    titleLine2: "la Chine",
+    titleLine3: "est devenu plus facile !",
+    titleLine4: "Avec nos solutions rapides et fiables",
+    cta: "Commencer",
+    chinaLabel: "Chine",
+    arabLabel: "Pays arabes",
+    cities: {
+      guangzhou: "Guangzhou",
+      shenzhen: "Shenzhen",
+      shanghai: "Shanghai",
+      beijing: "Pékin",
+      yiwu: "Yiwu",
+      hangzhou: "Hangzhou",
+      ningbo: "Ningbo",
+      tianjin: "Tianjin",
+    },
+  },
+};
 
 const HeroSection = () => {
+  const { lang } = useLanguage();
+  const t = translations[lang] || translations.ar;
+
   const mapClasses =
     "w-[230px] sm:w-[280px] md:w-[340px] h-auto drop-shadow-lg rounded-lg ";
   const arabMapClasses =
     "w-[260px] sm:w-[310px] md:w-[420px] h-auto drop-shadow-lg rounded-lg";
+
   const arabCountries = [
-    {
-      code: "sa",
-      top: "50%",
-      left: "2.5rem",
-      anim: "animate-float1",
-      size: "text-5xl",
-    },
-    {
-      code: "ae",
-      top: "5rem",
-      right: "5rem",
-      anim: "animate-float2",
-      size: "text-6xl",
-    },
-    {
-      code: "eg",
-      top: "8rem",
-      left: "25%",
-      anim: "animate-float3",
-      size: "text-5xl",
-    },
-    {
-      code: "jo",
-      top: "10rem",
-      right: "33.33%",
-      anim: "animate-float4",
-      size: "text-5xl",
-    },
-    {
-      code: "kw",
-      top: "13rem",
-      left: "33.33%",
-      anim: "animate-float5",
-      size: "text-6xl",
-    },
-    {
-      code: "qa",
-      top: "16rem",
-      right: "25%",
-      anim: "animate-float6",
-      size: "text-5xl",
-    },
-    {
-      code: "lb",
-      bottom: "5rem",
-      left: "2.5rem",
-      anim: "animate-float7",
-      size: "text-5xl",
-    },
-    {
-      code: "ma",
-      bottom: "8rem",
-      right: "4rem",
-      anim: "animate-float8",
-      size: "text-6xl",
-    },
-    {
-      code: "iq",
-      bottom: "11rem",
-      left: "25%",
-      anim: "animate-float9",
-      size: "text-5xl",
-    },
-    {
-      code: "ps",
-      top: "15.5rem",
-      left: "50%",
-      anim: "animate-float11",
-      size: "text-6xl",
-    },
+    { code: "sa", top: "50%", left: "2.5rem", anim: "animate-float1" },
+    { code: "ae", top: "5rem", right: "5rem", anim: "animate-float2" },
+    { code: "eg", top: "8rem", left: "25%", anim: "animate-float3" },
+    { code: "jo", top: "10rem", right: "33.33%", anim: "animate-float4" },
+    { code: "kw", top: "13rem", left: "33.33%", anim: "animate-float5" },
+    { code: "qa", top: "16rem", right: "25%", anim: "animate-float6" },
+    { code: "lb", bottom: "5rem", left: "2.5rem", anim: "animate-float7" },
+    { code: "ma", bottom: "8rem", right: "4rem", anim: "animate-float8" },
+    { code: "iq", bottom: "11rem", left: "25%", anim: "animate-float9" },
+    { code: "ps", top: "15.5rem", left: "50%", anim: "animate-float11" },
   ];
+
+  // City positions (same for all languages)
+  const cities = [
+    { id: "guangzhou", top: "44", left: "1/5", chinese: "广州" },
+    { id: "shenzhen", top: "56", right: "1/5", chinese: "深圳" },
+    { id: "shanghai", bottom: "36", left: "1/6", chinese: "上海" },
+    { id: "beijing", top: "72", left: "2/5", chinese: "北京" },
+    { id: "yiwu", bottom: "24", right: "1/4", chinese: "义乌" },
+    { id: "hangzhou", top: "44", right: "1/3", chinese: "杭州" },
+    { id: "ningbo", bottom: "48", left: "1/3", chinese: "宁波" },
+    { id: "tianjin", top: "36", left: "2/3", chinese: "天津" },
+  ];
+
   return (
     <section
+      // REMOVED: dir={isRTL ? "rtl" : "ltr"} - This was causing the layout changes
+      lang={lang}
       className="relative min-h-screen bg-gradient-to-br from-slate-600 via-blue-800 to-slate-700 flex flex-col md:flex-row items-center justify-center overflow-hidden"
       style={{ fontFamily: "Cairo, Amiri, sans-serif" }}
     >
-      {/* Floating Flags Background Animation */}
-      <div className="absolute inset-0 pointer-events-none z-5 overflow-hidden">
-        {/* Arab Countries Flags - Fixed for Chrome/Edge */}
+      {/* Desktop Background */}
+      <div className="hidden md:block absolute inset-0 pointer-events-none z-5 overflow-hidden">
         {arabCountries.map((country, idx) => (
           <div
             key={idx}
@@ -110,7 +148,6 @@ const HeroSection = () => {
           </div>
         ))}
 
-        {/* Chinese Flag - Image version (optional but safe) */}
         <div className="absolute top-18 right-12 w-16 h-12 animate-spin-slow opacity-30">
           <img
             src="https://flagcdn.com/w40/cn.png"
@@ -118,7 +155,8 @@ const HeroSection = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        {/* Ships Animation */}
+
+        {/* Animated icons */}
         <div className="absolute top-1/2 left-0 text-4xl animate-ship1 opacity-50">
           🚢
         </div>
@@ -128,8 +166,6 @@ const HeroSection = () => {
         <div className="absolute bottom-1/3 left-0 text-4xl animate-ship3 opacity-50">
           🛳️
         </div>
-
-        {/* Shipping Boxes Animation */}
         <div className="absolute top-1/4 left-1/2 text-3xl animate-box1 opacity-60">
           📦
         </div>
@@ -145,91 +181,133 @@ const HeroSection = () => {
         <div className="absolute top-1/6 right-2/3 text-3xl animate-box5 opacity-60">
           📦
         </div>
-
-        {/* Cargo Truck */}
         <div className="absolute bottom-10 right-10 text-4xl animate-truck opacity-50">
           🚚
         </div>
-
-        {/* Airplane */}
         <div className="absolute top-1/5 left-2/3 text-4xl animate-plane opacity-45">
           ✈️
         </div>
 
-        {/* Chinese Business Cities - Animated */}
-        <div className="absolute top-44 left-1/5 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float1">
-          <div className="text-center">广州</div>
-          <div className="text-sm text-amber-300/40">قوانجو</div>
-        </div>
-        <div className="absolute top-56 right-1/5 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float3">
-          <div className="text-center">深圳</div>
-          <div className="text-sm text-amber-300/40">شنجن</div>
-        </div>
-        <div className="absolute bottom-36 left-1/6 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float5">
-          <div className="text-center">上海</div>
-          <div className="text-sm text-amber-300/40">شنغهاي</div>
-        </div>
-        <div className="absolute top-72 left-2/5 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float7">
-          <div className="text-center">北京</div>
-          <div className="text-sm text-amber-300/40">بكين</div>
-        </div>
-        <div className="absolute bottom-24 right-1/4 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float9">
-          <div className="text-center">义乌</div>
-          <div className="text-sm text-amber-300/40">إيوو</div>
-        </div>
-        <div className="absolute top-44 right-1/3 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float2">
-          <div className="text-center">杭州</div>
-          <div className="text-sm text-amber-300/40">هانغجو</div>
-        </div>
-        <div className="absolute bottom-48 left-1/3 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float4">
-          <div className="text-center">宁波</div>
-          <div className="text-sm text-amber-300/40">نينغبو</div>
-        </div>
-        <div className="absolute top-36 left-2/3 text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float6">
-          <div className="text-center">天津</div>
-          <div className="text-sm text-amber-300/40">تيانجين</div>
-        </div>
+        {/* City names */}
+        {cities.map((city, i) => (
+          <div
+            key={city.id}
+            className={`absolute top-${city.top} ${
+              city.left ? `left-${city.left}` : `right-${city.right}`
+            } text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float${
+              i + 1
+            }`}
+          >
+            <div className="text-center">{city.chinese}</div>
+            <div className="text-sm text-amber-300/40">{t.cities[city.id]}</div>
+          </div>
+        ))}
       </div>
 
-      <div className="relative flex flex-col md:flex-row items-center justify-center w-full h-full px-4 md:px-8 gap-8 md:gap-16 ">
-        {/* Arab Countries Map - LEFT on PC, RIGHT on Mobile */}
-        <div className="relative transition-all duration-1000 animate-fadeInScale order-2 md:order-3 z-10 -translate-y-[10px] md:-translate-y-[80px]">
+      {/* Mobile Background */}
+      <div className="md:hidden absolute inset-0 pointer-events-none z-5 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-500/30 to-transparent animate-wave-slow"></div>
+          <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-green-500/30 to-transparent animate-wave-slow-reverse"></div>
+        </div>
+        <div className="absolute top-10 left-5 text-4xl animate-mobile-float1 opacity-40">
+          🚢
+        </div>
+        <div className="absolute top-1/4 right-8 text-3xl animate-mobile-float2 opacity-35">
+          📦
+        </div>
+        <div className="absolute top-1/2 left-10 text-3xl animate-mobile-float3 opacity-40">
+          ✈️
+        </div>
+        <div className="absolute bottom-1/4 right-5 text-4xl animate-mobile-float4 opacity-35">
+          🚚
+        </div>
+        <div className="absolute top-1/3 left-1/4 text-2xl animate-mobile-float5 opacity-30">
+          🌍
+        </div>
+        <div className="absolute bottom-1/3 right-1/3 text-2xl animate-mobile-float6 opacity-30">
+          🏭
+        </div>
+
+        <div className="absolute top-20 right-12 w-12 h-8 animate-mobile-diagonal1 opacity-30">
           <img
-            src="/images/middle_east_map.png"
-            alt="البلدان العربية"
-            className={`${arabMapClasses} brightness-200 contrast-50 saturate-150`}
+            src="https://flagcdn.com/w40/sa.png"
+            alt=""
+            className="w-full h-full object-cover rounded-sm"
           />
-          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
-            البلدان العربية
-          </div>
+        </div>
+        <div className="absolute top-1/3 left-12 w-12 h-8 animate-mobile-diagonal2 opacity-30">
+          <img
+            src="https://flagcdn.com/w40/cn.png"
+            alt=""
+            className="w-full h-full object-cover rounded-sm"
+          />
+        </div>
+        <div className="absolute bottom-1/3 right-16 w-12 h-8 animate-mobile-diagonal3 opacity-30">
+          <img
+            src="https://flagcdn.com/w40/jo.png"
+            alt=""
+            className="w-full h-full object-cover rounded-sm"
+          />
+        </div>
+        <div className="absolute top-2/3 left-8 w-12 h-9 animate-mobile-diagonal4 opacity-30">
+          <img
+            src="https://flagcdn.com/w40/iq.png"
+            alt=""
+            className="w-full h-full object-cover rounded-sm"
+          />
         </div>
 
-        {/* China Map - RIGHT on PC, LEFT on Mobile */}
+        <div className="absolute top-1/4 left-1/4 w-20 h-20 border-2 border-amber-400/20 rounded-full animate-pulse-ring"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-16 h-16 border-2 border-green-400/20 rounded-full animate-pulse-ring-delayed"></div>
+        <div className="absolute top-1/2 right-1/3 w-24 h-24 border-2 border-blue-400/15 rounded-full animate-pulse-ring-slow"></div>
+        <div className="absolute top-16 left-1/3 text-xl animate-sparkle1 opacity-40">
+          ✨
+        </div>
+        <div className="absolute bottom-20 right-1/4 text-xl animate-sparkle2 opacity-40">
+          ✨
+        </div>
+        <div className="absolute top-1/2 left-1/5 text-lg animate-sparkle3 opacity-35">
+          💫
+        </div>
+        <div className="absolute top-1/4 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent animate-line-move"></div>
+        <div className="absolute bottom-1/3 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-green-400/20 to-transparent animate-line-move-reverse"></div>
+      </div>
+
+      {/* FIXED: Maps and main content - removed RTL reordering */}
+      <div className="relative flex flex-col md:flex-row items-center justify-center w-full h-full px-4 md:px-8 gap-8 md:gap-16">
+        {/* China Map - ALWAYS on the LEFT */}
         <div className="relative transition-all duration-1000 animate-fadeInScale order-1 md:order-1 z-10 -translate-y-[10px] md:-translate-y-[80px]">
-          <img src="/images/china_map.png" alt="الصين" className={mapClasses} />
+          <img
+            src="/images/china_map.png"
+            alt={t.chinaLabel}
+            className={mapClasses}
+          />
           <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
-            الصين
+            {t.chinaLabel}
           </div>
         </div>
 
-        {/* Hero Content - Center on PC, BOTTOM on Mobile */}
+        {/* Title and CTA Button - ALWAYS in the CENTER */}
         <div className="relative z-30 text-center max-w-3xl mx-auto order-3 md:order-2 pt-z md:pt-70">
           <h1
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight transition-all duration-1000 animate-fadeInUp "
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight transition-all duration-1000 animate-fadeInUp"
             style={{
               fontFamily: "Cairo, sans-serif",
               textShadow: "0 4px 20px rgba(0,0,0,0.9)",
             }}
           >
             <span className="block text-white drop-shadow-2xl mb-2 text-4xl sm:text-4xl md:text-5xl lg:text-7xl">
-              مشروعك من{" "}
-              <span className=" text-red-600 drop-shadow-2xl mb-2">الصين </span>
+              {t.titleLine1}{" "}
+              <span className="text-red-600 drop-shadow-2xl mb-2">
+                {t.titleLine2}
+              </span>
             </span>
             <span className="block text-green-600 drop-shadow-2xl mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-5xl">
-              صار أسهل!
+              {t.titleLine3}
             </span>
             <span className="block text-yellow-400 drop-shadow-2xl text-2xl sm:text-3xl md:text-4xl lg:text-3xl">
-              مع حلولنا السريعة والموثوقة
+              {t.titleLine4}
             </span>
           </h1>
 
@@ -244,24 +322,29 @@ const HeroSection = () => {
                   "0 10px 25px rgba(245, 158, 11, 0.4), 0 3px 10px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3)",
               }}
             >
-              <span className="relative z-10">ابدأ الآن</span>
-
-              {/* Animated shine effect */}
+              <span className="relative z-10">{t.cta}</span>
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-800 ease-out"></div>
-
-              {/* Glowing border on hover */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 opacity-0 group-hover:opacity-15 transition-opacity duration-300 blur-sm -z-10"></div>
             </a>
-
-            {/* Outer glow rings */}
             <div className="absolute inset-0 rounded-2xl border border-amber-400/30 animate-pulse scale-105 pointer-events-none"></div>
           </div>
         </div>
-      </div>
 
-      {/* Animated Flight Line: Right (China) → Left (Arab Countries) - FIXED DIRECTION */}
+        {/* Middle East Map - ALWAYS on the RIGHT */}
+        <div className="relative transition-all duration-1000 animate-fadeInScale order-2 md:order-3 z-10 -translate-y-[10px] md:-translate-y-[80px]">
+          <img
+            src="/images/middle_east_map.png"
+            alt={t.arabLabel}
+            className={`${arabMapClasses} brightness-200 contrast-50 saturate-150`}
+          />
+          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
+            {t.arabLabel}
+          </div>
+        </div>
+      </div>
+      {/* Flight path - FIXED: This will now work consistently */}
       <svg
-        className="absolute inset-0 w-full h-full pointer-events-none z-10"
+        className="absolute inset-0 w-full h-full pointer-events-none z-10 hidden md:block"
         viewBox="0 0 1200 600"
       >
         <defs>
@@ -271,8 +354,6 @@ const HeroSection = () => {
             <stop offset="100%" stopColor="#16a34a" />
           </linearGradient>
         </defs>
-
-        {/* PC: Right → Left - CONNECTING MAP EDGES */}
         <path
           id="flightPathPC"
           d="M999,220 Q700,170 550,220 Q400,270 270,220"
@@ -280,39 +361,28 @@ const HeroSection = () => {
           stroke="url(#flightGradient)"
           strokeWidth="4"
           strokeDasharray="20,8"
-          className="stroke-current hidden md:block text-green-600"
+          className="stroke-current text-green-600"
         />
-        <g className="hidden md:block">
-          <circle r="6" fill="#fff">
+        <g>
+          <text fontSize="39" fill="#fff" transform="scale(1, 1)">
+            🚢
             <animateMotion
-              dur="6s"
+              dur="8s"
               repeatCount="indefinite"
-              rotate="auto"
               keyPoints="0;1"
               keyTimes="0;1"
               calcMode="linear"
             >
               <mpath href="#flightPathPC" />
             </animateMotion>
-          </circle>
-          <circle r="3" fill="#ffffff" opacity="0.6">
-            <animateMotion
-              dur="6s"
-              repeatCount="indefinite"
-              begin="0.2s"
-              keyPoints="0;1"
-              keyTimes="0;1"
-              calcMode="linear"
-            >
-              <mpath href="#flightPathPC" />
-            </animateMotion>
-          </circle>
+          </text>
         </g>
       </svg>
 
       <style jsx>{`
         @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap");
 
+        /* Desktop Animations */
         @keyframes flightDash {
           to {
             stroke-dashoffset: 25;
@@ -357,7 +427,319 @@ const HeroSection = () => {
           opacity: 0;
         }
 
-        /* Flag Animations */
+        /* Mobile-Specific Animations */
+        @keyframes wave-slow {
+          0%,
+          100% {
+            transform: translateY(0) scaleX(1);
+          }
+          50% {
+            transform: translateY(-10px) scaleX(1.05);
+          }
+        }
+
+        @keyframes wave-slow-reverse {
+          0%,
+          100% {
+            transform: translateY(0) scaleX(1);
+          }
+          50% {
+            transform: translateY(10px) scaleX(1.05);
+          }
+        }
+
+        @keyframes mobile-float1 {
+          0%,
+          100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          25% {
+            transform: translate(15px, -20px) rotate(5deg);
+          }
+          50% {
+            transform: translate(30px, 0) rotate(0deg);
+          }
+          75% {
+            transform: translate(15px, 20px) rotate(-5deg);
+          }
+        }
+
+        @keyframes mobile-float2 {
+          0%,
+          100% {
+            transform: translate(0, 0) rotate(0deg) scale(1);
+          }
+          33% {
+            transform: translate(-20px, 15px) rotate(-5deg) scale(1.1);
+          }
+          66% {
+            transform: translate(-10px, -15px) rotate(5deg) scale(0.9);
+          }
+        }
+
+        @keyframes mobile-float3 {
+          0%,
+          100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          50% {
+            transform: translate(20px, -25px) rotate(10deg);
+          }
+        }
+
+        @keyframes mobile-float4 {
+          0%,
+          100% {
+            transform: translate(0, 0) scale(1);
+          }
+          25% {
+            transform: translate(-15px, -15px) scale(1.05);
+          }
+          75% {
+            transform: translate(15px, 15px) scale(0.95);
+          }
+        }
+
+        @keyframes mobile-diagonal1 {
+          0%,
+          100% {
+            transform: translate(0, 0);
+          }
+          50% {
+            transform: translate(-30px, 40px);
+          }
+        }
+
+        @keyframes mobile-diagonal2 {
+          0%,
+          100% {
+            transform: translate(0, 0);
+          }
+          50% {
+            transform: translate(40px, -30px);
+          }
+        }
+
+        @keyframes mobile-diagonal3 {
+          0%,
+          100% {
+            transform: translate(0, 0);
+          }
+          50% {
+            transform: translate(-25px, -35px);
+          }
+        }
+
+        @keyframes mobile-diagonal4 {
+          0%,
+          100% {
+            transform: translate(0, 0);
+          }
+          50% {
+            transform: translate(35px, 25px);
+          }
+        }
+
+        @keyframes mobile-float5 {
+          0%,
+          100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          50% {
+            transform: translate(-20px, 30px) rotate(180deg);
+          }
+        }
+
+        @keyframes mobile-float6 {
+          0%,
+          100% {
+            transform: translate(0, 0) scale(1);
+          }
+          50% {
+            transform: translate(25px, -20px) scale(1.2);
+          }
+        }
+
+        @keyframes sparkle1 {
+          0%,
+          100% {
+            opacity: 0.4;
+            transform: scale(1) rotate(0deg);
+          }
+          50% {
+            opacity: 0.8;
+            transform: scale(1.3) rotate(180deg);
+          }
+        }
+
+        @keyframes sparkle2 {
+          0%,
+          100% {
+            opacity: 0.3;
+            transform: scale(0.8) rotate(0deg);
+          }
+          50% {
+            opacity: 0.7;
+            transform: scale(1.2) rotate(-180deg);
+          }
+        }
+
+        @keyframes sparkle3 {
+          0%,
+          100% {
+            opacity: 0.35;
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            opacity: 0.75;
+            transform: translateY(-15px) rotate(360deg);
+          }
+        }
+
+        @keyframes line-move {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+
+        @keyframes line-move-reverse {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+
+        @keyframes pulse-ring-slow {
+          0% {
+            transform: scale(0.9);
+            opacity: 0.5;
+          }
+          50% {
+            transform: scale(1.4);
+            opacity: 0.1;
+          }
+          100% {
+            transform: scale(0.9);
+            opacity: 0.5;
+          }
+        }
+
+        @keyframes pulse-ring {
+          0% {
+            transform: scale(0.8);
+            opacity: 0.8;
+          }
+          50% {
+            transform: scale(1.2);
+            opacity: 0.3;
+          }
+          100% {
+            transform: scale(0.8);
+            opacity: 0.8;
+          }
+        }
+
+        @keyframes pulse-ring-delayed {
+          0% {
+            transform: scale(1);
+            opacity: 0.6;
+          }
+          50% {
+            transform: scale(1.3);
+            opacity: 0.2;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 0.6;
+          }
+        }
+
+        .animate-wave-slow {
+          animation: wave-slow 6s ease-in-out infinite;
+        }
+
+        .animate-wave-slow-reverse {
+          animation: wave-slow-reverse 7s ease-in-out infinite;
+        }
+
+        .animate-mobile-float1 {
+          animation: mobile-float1 8s ease-in-out infinite;
+        }
+
+        .animate-mobile-float2 {
+          animation: mobile-float2 6s ease-in-out infinite;
+        }
+
+        .animate-mobile-float3 {
+          animation: mobile-float3 7s ease-in-out infinite;
+        }
+
+        .animate-mobile-float4 {
+          animation: mobile-float4 9s ease-in-out infinite;
+        }
+
+        .animate-mobile-diagonal1 {
+          animation: mobile-diagonal1 10s ease-in-out infinite;
+        }
+
+        .animate-mobile-diagonal2 {
+          animation: mobile-diagonal2 12s ease-in-out infinite 1s;
+        }
+
+        .animate-mobile-diagonal3 {
+          animation: mobile-diagonal3 11s ease-in-out infinite 2s;
+        }
+
+        .animate-mobile-diagonal4 {
+          animation: mobile-diagonal4 13s ease-in-out infinite 3s;
+        }
+
+        .animate-mobile-float5 {
+          animation: mobile-float5 10s ease-in-out infinite;
+        }
+
+        .animate-mobile-float6 {
+          animation: mobile-float6 8s ease-in-out infinite 2s;
+        }
+
+        .animate-sparkle1 {
+          animation: sparkle1 4s ease-in-out infinite;
+        }
+
+        .animate-sparkle2 {
+          animation: sparkle2 5s ease-in-out infinite 1s;
+        }
+
+        .animate-sparkle3 {
+          animation: sparkle3 6s ease-in-out infinite 2s;
+        }
+
+        .animate-line-move {
+          animation: line-move 8s linear infinite;
+        }
+
+        .animate-line-move-reverse {
+          animation: line-move-reverse 10s linear infinite;
+        }
+
+        .animate-pulse-ring-slow {
+          animation: pulse-ring-slow 4s ease-in-out infinite 2s;
+        }
+
+        .animate-pulse-ring {
+          animation: pulse-ring 3s ease-in-out infinite;
+        }
+
+        .animate-pulse-ring-delayed {
+          animation: pulse-ring-delayed 3s ease-in-out infinite 1.5s;
+        }
+
+        /* Standard Desktop Animations */
         @keyframes float1 {
           0%,
           100% {
@@ -549,7 +931,6 @@ const HeroSection = () => {
           animation: float-reverse 7s ease-in-out infinite;
         }
 
-        /* Ships Animations */
         @keyframes ship1 {
           0% {
             transform: translateX(-100px) translateY(0px);
@@ -586,7 +967,6 @@ const HeroSection = () => {
           }
         }
 
-        /* Shipping Boxes Animations */
         @keyframes box1 {
           0%,
           100% {
@@ -637,7 +1017,6 @@ const HeroSection = () => {
           }
         }
 
-        /* Truck Animation */
         @keyframes truck {
           0%,
           100% {
@@ -648,7 +1027,6 @@ const HeroSection = () => {
           }
         }
 
-        /* Plane Animation */
         @keyframes plane {
           0% {
             transform: translateX(-50px) translateY(0px) rotate(0deg);
@@ -700,7 +1078,6 @@ const HeroSection = () => {
           animation: plane 20s ease-in-out infinite 3s;
         }
 
-        /* iPad specific improvements */
         @media (min-width: 768px) and (max-width: 1024px) {
           .hero-section-container {
             padding: 2rem 1.5rem;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import {
   HouseIcon,
   WrenchIcon,
@@ -13,17 +13,88 @@ import {
   GlobeIcon,
   BriefcaseBusiness,
 } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaTiktok,
+  FaInstagram,
+  FaFacebook,
+  FaTelegramPlane,
+} from "react-icons/fa";
 import Image from "next/image";
 import logoImg from "../../public/logo.png";
+import { useLanguage } from "../app/context/LanguageContext"; // ✅ السياق العالمي
+
+// الترجمات
+const translations = {
+  ar: {
+    navigation: [
+      "الرئيسية",
+      "الخدمات",
+      "المنتجات",
+      "التجارة من الصين",
+      "الأسئلة الشائعة",
+      "تواصل معنا",
+    ],
+    social: ["تيك توك", "إنستغرام", "فيسبوك", "تليجرام"],
+    contact: "تواصل",
+  },
+  en: {
+    navigation: [
+      "Home",
+      "Services",
+      "Products",
+      "Trade from China",
+      "FAQ",
+      "Contact Us",
+    ],
+    social: ["TikTok", "Instagram", "Facebook", "Telegram"],
+    contact: "Contact",
+  },
+  zh: {
+    navigation: ["首页", "服务", "产品", "中国贸易", "常见问题", "联系我们"],
+    social: ["抖音", "Instagram", "Facebook", "Telegram"],
+    contact: "联系",
+  },
+  fr: {
+    navigation: [
+      "Accueil",
+      "Services",
+      "Produits",
+      "Commerce depuis la Chine",
+      "FAQ",
+      "Contactez-nous",
+    ],
+    social: ["TikTok", "Instagram", "Facebook", "Telegram"],
+    contact: "Contact",
+  },
+};
 
 const navigationLinks = [
-  { href: "/", label: "الرئيسية", icon: HouseIcon },
-  { href: "/services", label: "الخدمات", icon: WrenchIcon },
-  { href: "/products", label: "المنتجات", icon: PackageIcon },
-  { href: "/chinainfo", label: "التجارة من الصين", icon: BriefcaseBusiness },
-  { href: "/quiz", label: "الأسئلة الشائعة", icon: InfoIcon },
-  { href: "/contact", label: "تواصل معنا", icon: PhoneIcon },
+  { href: "/", icon: HouseIcon },
+  { href: "/services", icon: WrenchIcon },
+  { href: "/products", icon: PackageIcon },
+  { href: "/chinainfo", icon: BriefcaseBusiness },
+  { href: "/quiz", icon: InfoIcon },
+  { href: "/contact", icon: PhoneIcon },
+];
+
+const socialLinks = [
+  {
+    icon: FaTiktok,
+    href: "https://www.tiktok.com/@kenanimpexpco",
+    labelKey: 0,
+  },
+  {
+    icon: FaInstagram,
+    href: "https://www.instagram.com/kenanimpexp/",
+    labelKey: 1,
+  },
+  {
+    icon: FaFacebook,
+    href: "https://www.facebook.com/profile.php?id=61581469569569",
+    labelKey: 2,
+  },
+  { icon: FaTelegramPlane, href: "https://t.me/kenanimpexp", labelKey: 3 },
 ];
 
 const languages = [
@@ -34,21 +105,31 @@ const languages = [
 ];
 
 export default function Navbar() {
+  const { lang, setLang } = useLanguage(); // ✅ من السياق العالمي
+  const t = translations[lang] || translations.ar;
+  const isRTL = lang === "ar";
+
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState(languages[0]);
+
+  const selectedLang = languages.find((l) => l.code === lang) || languages[0];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleLangChange = (newLang) => {
+    setLang(newLang.code);
+    setIsLangOpen(false);
+  };
+
   return (
     <header
+      dir={isRTL ? "rtl" : "ltr"}
+      lang={lang}
       className={`fixed w-full top-0 left-0 z-50 transition-all duration-500 ease-in-out ${
         isScrolled
           ? "bg-white backdrop-blur-lg shadow-xl border-b border-gray-200"
@@ -56,10 +137,11 @@ export default function Navbar() {
       }`}
     >
       <div className="flex h-14 items-center px-4 md:px-8 max-w-8xl mx-auto">
-        {/* Mobile/Tablet - Burger menu */}
+        {/* زر القائمة (موبايل) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden text-blue-500 hover:text-blue-300 transition-all duration-300 transform hover:scale-110 p-1 rounded-lg hover:bg-blue-700/30"
+          aria-label="Toggle menu"
         >
           <div className="relative w-6 h-6">
             <Menu
@@ -77,7 +159,7 @@ export default function Navbar() {
           </div>
         </button>
 
-        {/* Mobile/Tablet Logo Center */}
+        {/* شعار الجوال (في المنتصف) */}
         <div className="flex-shrink-0 lg:hidden flex-1 flex justify-center">
           <a href="/" className="block group">
             <Image
@@ -91,8 +173,12 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Desktop Logo Left */}
-        <div className="hidden lg:flex flex-shrink-0 lg:mr-8">
+        {/* شعار سطح المكتب */}
+        <div
+          className={`hidden lg:flex flex-shrink-0 ${
+            isRTL ? "lg:ml-8" : "lg:mr-8"
+          }`}
+        >
           <a href="/" className="block group">
             <Image
               src={logoImg}
@@ -105,7 +191,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Desktop Navigation Links Center */}
+        {/* روابط التنقل */}
         <div className="hidden lg:flex items-center justify-center flex-1 gap-1">
           {navigationLinks.map((link, i) => {
             const Icon = link.icon;
@@ -120,7 +206,7 @@ export default function Navbar() {
                   className="text-blue-600 transition-transform duration-300 group-hover:scale-110"
                 />
                 <span className="relative">
-                  {link.label}
+                  {t.navigation[i]}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </a>
@@ -128,9 +214,28 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Desktop Right - WhatsApp + Language */}
+        {/* الجانب الأيمن/الأيسر */}
         <div className="hidden lg:flex items-center gap-4">
-          {/* WhatsApp */}
+          {/* وسائل التواصل */}
+          <div className="flex items-center gap-3">
+            {socialLinks.map((link, i) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={i}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={t.social[link.labelKey]}
+                  className="p-2 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-600 hover:text-blue-800 transition-all duration-300 transform hover:scale-110 shadow-md"
+                >
+                  <Icon size={18} />
+                </a>
+              );
+            })}
+          </div>
+
+          {/* واتساب */}
           <a
             href="https://wa.me/+962787557794"
             target="_blank"
@@ -138,31 +243,33 @@ export default function Navbar() {
             className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             <FaWhatsapp size={18} className="animate-pulse" />
-            <span className="font-medium">تواصل</span>
+            <span className="font-medium">{t.contact}</span>
           </a>
 
-          {/* Language Switcher Dropdown */}
+          {/* مبدّل اللغة */}
           <div className="relative">
             <button
               onClick={() => setIsLangOpen(!isLangOpen)}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-blue-700/30 transition-all duration-300 group"
+              className="flex items-center gap-2 px-7 py-2 rounded-lg hover:bg-blue-700/30 transition-all duration-300 group"
+              aria-label="Select language"
             >
               <GlobeIcon
                 size={18}
-                className="text-blue-200 group-hover:text-amber-300 transition-colors duration-300"
+                className="text-blue-700 group-hover:text-blue-900"
               />
               <span className="text-xl">{selectedLang.flag}</span>
               <ChevronDownIcon
                 size={16}
-                className={`text-blue-200 transition-all duration-300 ${
-                  isLangOpen ? "rotate-180 text-amber-300" : "rotate-0"
+                className={`text-blue-900 transition-all duration-300 ${
+                  isLangOpen ? "rotate-180 text-blue-700" : "rotate-0"
                 }`}
               />
             </button>
 
-            {/* Language Dropdown Menu */}
             <div
-              className={`absolute right-0 top-full mt-2 w-48 bg-slate-800/95 backdrop-blur-xl rounded-xl shadow-2xl border border-blue-600/30 overflow-hidden transition-all duration-300 origin-top-right ${
+              className={`absolute ${
+                isRTL ? "left-0" : "right-0"
+              } top-full mt-2 w-35 bg-white backdrop-blur-xl rounded-xl shadow-2xl border border-blue-700/30 overflow-hidden transition-all duration-300 origin-top-right ${
                 isLangOpen
                   ? "opacity-100 scale-100 translate-y-0"
                   : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -171,18 +278,13 @@ export default function Navbar() {
               {languages.map((lang) => (
                 <button
                   key={lang.code}
-                  onClick={() => {
-                    setSelectedLang(lang);
-                    setIsLangOpen(false);
-                  }}
-                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-700/40 transition-all duration-200 text-right text-blue-100"
+                  onClick={() => handleLangChange(lang)}
+                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-700/40 transition-all duration-200 text-right text-black"
                 >
                   <span className="text-xl">{lang.flag}</span>
-                  <span className="font-medium hover:text-amber-300">
-                    {lang.name}
-                  </span>
+                  <span className="font-medium">{lang.name}</span>
                   {selectedLang.code === lang.code && (
-                    <div className="w-2 h-2 bg-amber-400 rounded-full ml-auto"></div>
+                    <div className="w-2 h-2 bg-blue-600 rounded-full ml-auto"></div>
                   )}
                 </button>
               ))}
@@ -190,10 +292,43 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile/Tablet WhatsApp */}
+        {/* موبايل: اللغة + واتساب */}
         <div className="flex lg:hidden items-center gap-3">
+          <div className="relative">
+            <button
+              onClick={() => setIsLangOpen(!isLangOpen)}
+              className="flex items-center justify-center p-2.5 rounded-full hover:bg-blue-100 text-blue-700 transition-all duration-300"
+              title="اختيار اللغة"
+            >
+              <span className="text-xl">{selectedLang.flag}</span>
+            </button>
+            <div
+              className={`absolute ${
+                isRTL ? "left-0" : "right-0"
+              } top-full mt-2 w-32 bg-white backdrop-blur-xl rounded-xl shadow-2xl border border-blue-700/30 overflow-hidden transition-all duration-300 origin-top-right z-50 ${
+                isLangOpen
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 -translate-y-5 pointer-events-none"
+              }`}
+            >
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => handleLangChange(lang)}
+                  className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-50 transition-all duration-200 text-right"
+                >
+                  <span className="text-lg">{lang.flag}</span>
+                  <span className="font-medium text-black">{lang.name}</span>
+                  {selectedLang.code === lang.code && (
+                    <div className="w-2 h-2 bg-blue-600 rounded-full ml-auto"></div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <a
-            href=""
+            href="https://wa.me/+962787557794"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white p-2.5 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-110 shadow-lg"
@@ -204,10 +339,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile/Tablet Menu */}
+      {/* القائمة الجانبية (موبايل) */}
       <div
         className={`lg:hidden bg-gradient-to-br from-slate-100/95 to-white/95 backdrop-blur-xl shadow-xl transition-all duration-500 ease-out overflow-hidden ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="p-6 space-y-2">
@@ -224,15 +359,33 @@ export default function Navbar() {
                   size={20}
                   className="text-blue-600 transition-transform duration-300 group-hover:scale-110"
                 />
-                <span>{link.label}</span>
+                <span>{t.navigation[i]}</span>
                 <div className="w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-6 ml-auto"></div>
               </a>
             );
           })}
+
+          <div className="flex justify-center gap-4 pt-4">
+            {socialLinks.map((link, i) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={i}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={t.social[link.labelKey]}
+                  className="p-3 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-600 hover:text-blue-800 transition-all duration-300 transform hover:scale-110 shadow"
+                >
+                  <Icon size={20} />
+                </a>
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      {/* Backdrop for language dropdown */}
+      {/* خلفية لإغلاق قائمة اللغة */}
       {isLangOpen && (
         <div
           className="fixed inset-0 z-40"
