@@ -22,7 +22,7 @@ import {
 } from "react-icons/fa";
 import Image from "next/image";
 import logoImg from "../../public/logo.png";
-import { useLanguage } from "../app/context/LanguageContext"; // ✅ السياق العالمي
+import { useLanguage } from "../app/context/LanguageContext";
 
 // الترجمات
 const translations = {
@@ -94,7 +94,11 @@ const socialLinks = [
     href: "https://www.facebook.com/profile.php?id=61581469569569",
     labelKey: 2,
   },
-  { icon: FaTelegramPlane, href: "https://t.me/kenanimpexp", labelKey: 3 },
+  {
+    icon: FaTelegramPlane,
+    href: "https://t.me/kenanimpexp",
+    labelKey: 3,
+  },
 ];
 
 const languages = [
@@ -105,7 +109,7 @@ const languages = [
 ];
 
 export default function Navbar() {
-  const { lang, setLang } = useLanguage(); // ✅ من السياق العالمي
+  const { lang, setLang } = useLanguage();
   const t = translations[lang] || translations.ar;
   const isRTL = lang === "ar";
 
@@ -136,7 +140,7 @@ export default function Navbar() {
           : "bg-white backdrop-blur-md shadow-lg border-b border-gray-100"
       }`}
     >
-      <div className="flex h-14 items-center px-4 md:px-8 max-w-8xl mx-auto">
+      <div className="flex h-13 items-center px-4 md:px-9 max-w-8xl mx-auto">
         {/* زر القائمة (موبايل) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -191,7 +195,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* روابط التنقل */}
+        {/* روابط التنقل - Desktop */}
         <div className="hidden lg:flex items-center justify-center flex-1 gap-1">
           {navigationLinks.map((link, i) => {
             const Icon = link.icon;
@@ -205,7 +209,7 @@ export default function Navbar() {
                   size={16}
                   className="text-blue-600 transition-transform duration-300 group-hover:scale-110"
                 />
-                <span className="relative">
+                <span className="relative whitespace-nowrap">
                   {t.navigation[i]}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
                 </span>
@@ -214,7 +218,7 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* الجانب الأيمن/الأيسر */}
+        {/* الجانب الأيمن/الأيسر - Desktop */}
         <div className="hidden lg:flex items-center gap-4">
           {/* وسائل التواصل */}
           <div className="flex items-center gap-3">
@@ -240,17 +244,17 @@ export default function Navbar() {
             href="https://wa.me/+8613681046887"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-2 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             <FaWhatsapp size={18} className="animate-pulse" />
-            <span className="font-medium">{t.contact}</span>
+            <span className="font-medium whitespace-nowrap">{t.contact}</span>
           </a>
 
           {/* مبدّل اللغة */}
           <div className="relative">
             <button
               onClick={() => setIsLangOpen(!isLangOpen)}
-              className="flex items-center gap-2 px-7 py-2 rounded-lg hover:bg-blue-700/30 transition-all duration-300 group"
+              className="flex items-center gap-2 px-1 py-2 rounded-lg hover:bg-blue-700/30 transition-all duration-300 group"
               aria-label="Select language"
             >
               <GlobeIcon
@@ -282,7 +286,9 @@ export default function Navbar() {
                   className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-700/40 transition-all duration-200 text-right text-black"
                 >
                   <span className="text-xl">{lang.flag}</span>
-                  <span className="font-medium">{lang.name}</span>
+                  <span className="font-medium whitespace-nowrap">
+                    {lang.name}
+                  </span>
                   {selectedLang.code === lang.code && (
                     <div className="w-2 h-2 bg-blue-600 rounded-full ml-auto"></div>
                   )}
@@ -315,10 +321,12 @@ export default function Navbar() {
                 <button
                   key={lang.code}
                   onClick={() => handleLangChange(lang)}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-blue-50 transition-all duration-200 text-right"
+                  className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-blue-50 transition-all duration-200 text-right"
                 >
                   <span className="text-lg">{lang.flag}</span>
-                  <span className="font-medium text-black">{lang.name}</span>
+                  <span className="font-medium text-black whitespace-nowrap">
+                    {lang.name}
+                  </span>
                   {selectedLang.code === lang.code && (
                     <div className="w-2 h-2 bg-blue-600 rounded-full ml-auto"></div>
                   )}
@@ -359,7 +367,7 @@ export default function Navbar() {
                   size={20}
                   className="text-blue-600 transition-transform duration-300 group-hover:scale-110"
                 />
-                <span>{t.navigation[i]}</span>
+                <span className="whitespace-nowrap">{t.navigation[i]}</span>
                 <div className="w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-6 ml-auto"></div>
               </a>
             );
