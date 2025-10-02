@@ -237,7 +237,7 @@ export default function Navbar() {
 
           {/* واتساب */}
           <a
-            href="https://wa.me/+962787557794"
+            href="https://wa.me/+8613681046887"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
