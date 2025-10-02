@@ -189,7 +189,7 @@ const ContactUsPage = () => {
                 <span className="text-2xl mt-1">📧</span>
                 <div>
                   <h4 className="font-bold text-white">{t.emailLabel}</h4>
-                  <p className="font-mono">kenanimpexp@gmail.com</p>
+                  <p className="font-mono">kenanexpco@gmail.com</p>
                 </div>
               </div>
 
