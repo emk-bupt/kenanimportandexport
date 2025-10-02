@@ -105,7 +105,7 @@ const Footer = () => {
           </h2>
 
           <a
-            href="https://wa.me/963950882277" // 👈 Add your WhatsApp number
+            href="https://wa.me/+8613681046887" // 👈 Add your WhatsApp number
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group"
