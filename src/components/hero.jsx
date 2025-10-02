@@ -25,7 +25,7 @@ const translations = {
   en: {
     titleLine1: "Your business from",
     titleLine2: "China",
-    titleLine3: "Just got easier!",
+    titleLine3: "!Just got easier",
     titleLine4: "With our fast & reliable solutions",
     cta: "Get Started",
     chinaLabel: "China",
@@ -44,7 +44,7 @@ const translations = {
   zh: {
     titleLine1: "您的业务从",
     titleLine2: "中国",
-    titleLine3: "变得更简单了！",
+    titleLine3: "!变得更简单了",
     titleLine4: "借助我们快速可靠的解决方案",
     cta: "立即开始",
     chinaLabel: "中国",
@@ -63,7 +63,7 @@ const translations = {
   fr: {
     titleLine1: "Votre projet depuis",
     titleLine2: "la Chine",
-    titleLine3: "est devenu plus facile !",
+    titleLine3: "!est devenu plus facile",
     titleLine4: "Avec nos solutions rapides et fiables",
     cta: "Commencer",
     chinaLabel: "Chine",
