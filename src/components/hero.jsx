@@ -2,6 +2,7 @@
 import React from "react";
 import { useLanguage } from "../app/context/LanguageContext";
 
+// ===== Translations =====
 const translations = {
   ar: {
     titleLine1: "مشروعك من",
@@ -12,7 +13,7 @@ const translations = {
     chinaLabel: "الصين",
     arabLabel: "البلدان العربية",
     cities: {
-      guangzhou: "قوانجو",
+      guangzhou: "جوانزو",
       shenzhen: "شنجن",
       shanghai: "شنغهاي",
       beijing: "بكين",
@@ -21,6 +22,7 @@ const translations = {
       ningbo: "نينغبو",
       tianjin: "تيانجين",
     },
+    bookNow: "أحجز خدمتك الآن",
   },
   en: {
     titleLine1: "Your business from",
@@ -40,6 +42,7 @@ const translations = {
       ningbo: "Ningbo",
       tianjin: "Tianjin",
     },
+    bookNow: "Book Your Service Now",
   },
   zh: {
     titleLine1: "您的业务从",
@@ -59,6 +62,7 @@ const translations = {
       ningbo: "宁波",
       tianjin: "天津",
     },
+    bookNow: "立即预订服务",
   },
   fr: {
     titleLine1: "Votre projet depuis",
@@ -78,15 +82,16 @@ const translations = {
       ningbo: "Ningbo",
       tianjin: "Tianjin",
     },
+    bookNow: "Réservez votre service maintenant",
   },
 };
 
 const HeroSection = () => {
   const { lang } = useLanguage();
-  const t = translations[lang] || translations.ar;
+  const t = translations[lang] || translations.en;
 
   const mapClasses =
-    "w-[230px] sm:w-[280px] md:w-[340px] h-auto drop-shadow-lg rounded-lg ";
+    "w-[230px] sm:w-[280px] md:w-[340px] h-auto drop-shadow-lg rounded-lg";
   const arabMapClasses =
     "w-[260px] sm:w-[310px] md:w-[420px] h-auto drop-shadow-lg rounded-lg";
 
@@ -103,21 +108,22 @@ const HeroSection = () => {
     { code: "ps", top: "15.5rem", left: "50%", anim: "animate-float11" },
   ];
 
-  // City positions (same for all languages)
   const cities = [
-    { id: "guangzhou", top: "44", left: "1/5", chinese: "广州" },
-    { id: "shenzhen", top: "56", right: "1/5", chinese: "深圳" },
-    { id: "shanghai", bottom: "36", left: "1/6", chinese: "上海" },
-    { id: "beijing", top: "72", left: "2/5", chinese: "北京" },
-    { id: "yiwu", bottom: "24", right: "1/4", chinese: "义乌" },
-    { id: "hangzhou", top: "44", right: "1/3", chinese: "杭州" },
-    { id: "ningbo", bottom: "48", left: "1/3", chinese: "宁波" },
-    { id: "tianjin", top: "36", left: "2/3", chinese: "天津" },
+    { id: "guangzhou", top: "14%", left: "20%", chinese: "广州", anim: 1 },
+    { id: "shenzhen", top: "56%", right: "20%", chinese: "深圳", anim: 2 },
+    { id: "shanghai", bottom: "10%", left: "16.67%", chinese: "上海", anim: 3 },
+    { id: "beijing", top: "72%", left: "30%", chinese: "北京", anim: 4 },
+    { id: "yiwu", bottom: "24%", right: "25%", chinese: "义乌", anim: 5 },
+    { id: "hangzhou", top: "38%", right: "33.33%", chinese: "杭州", anim: 6 },
+    { id: "ningbo", bottom: "38%", left: "25.33%", chinese: "宁波", anim: 7 },
+    { id: "tianjin", top: "15%", left: "66.67%", chinese: "天津", anim: 8 },
   ];
+
+  // 👇 Optional: Only show 4 cities on mobile for less clutter
+  const mobileCities = cities.slice(0, 4); // You can customize this
 
   return (
     <section
-      // REMOVED: dir={isRTL ? "rtl" : "ltr"} - This was causing the layout changes
       lang={lang}
       className="relative min-h-screen bg-gradient-to-br from-slate-600 via-blue-800 to-slate-700 flex flex-col md:flex-row items-center justify-center overflow-hidden"
       style={{ fontFamily: "Cairo, Amiri, sans-serif" }}
@@ -127,7 +133,7 @@ const HeroSection = () => {
         {arabCountries.map((country, idx) => (
           <div
             key={idx}
-            className={`absolute ${country.anim} opacity-40`}
+            className={`absolute ${country.anim}`}
             style={{
               top: country.top,
               bottom: country.bottom,
@@ -188,24 +194,43 @@ const HeroSection = () => {
           ✈️
         </div>
 
-        {/* City names */}
-        {cities.map((city, i) => (
+        {/* City labels: Chinese + Translated */}
+        {cities.map((city) => (
           <div
             key={city.id}
-            className={`absolute top-${city.top} ${
-              city.left ? `left-${city.left}` : `right-${city.right}`
-            } text-lg sm:text-xl md:text-2xl font-bold text-white/30 animate-float${
-              i + 1
-            }`}
+            className={`absolute animate-float${city.anim}`}
+            style={{
+              top: city.top,
+              bottom: city.bottom,
+              left: city.left,
+              right: city.right,
+            }}
           >
-            <div className="text-center">{city.chinese}</div>
-            <div className="text-sm text-amber-300/40">{t.cities[city.id]}</div>
+            <div
+              className="text-center text-lg sm:text-xl md:text-2xl font-bold text-white drop-shadow-lg"
+              style={{
+                textShadow:
+                  "2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.5)",
+              }}
+            >
+              {city.chinese}
+            </div>
+            <div
+              className="text-sm font-semibold text-amber-300 drop-shadow-md"
+              style={{
+                textShadow:
+                  "1px 1px 3px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.5)",
+              }}
+            >
+              {t.cities[city.id]}
+            </div>
           </div>
         ))}
       </div>
 
       {/* Mobile Background */}
       <div className="md:hidden absolute inset-0 pointer-events-none z-5 overflow-hidden">
+        {/* ... (keep your mobile background exactly as-is) ... */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-500/30 to-transparent animate-wave-slow"></div>
           <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-green-500/30 to-transparent animate-wave-slow-reverse"></div>
@@ -272,12 +297,49 @@ const HeroSection = () => {
         </div>
         <div className="absolute top-1/4 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent animate-line-move"></div>
         <div className="absolute bottom-1/3 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-green-400/20 to-transparent animate-line-move-reverse"></div>
+
+        {/* ✅ MOBILE CITY LABELS — Larger, Left/Right, Clear of Center */}
+        {[
+          { id: "guangzhou", side: "left", chinese: "广州", anim: 1 },
+          { id: "shenzhen", side: "right", chinese: "深圳", anim: 1 },
+          { id: "shanghai", side: "left", chinese: "上海", anim: 3 },
+          { id: "yiwu", side: "right", chinese: "义乌", anim: 1 },
+          { id: "beijing", side: "left", chinese: "北京", anim: 1 },
+          { id: "tianjin", side: "right", chinese: "天津", anim: 3 },
+        ].map((city, idx) => (
+          <div
+            key={`mobile-city-${city.id}`}
+            className={`absolute animate-float${city.anim} pointer-events-none z-10`}
+            style={{
+              top: `${11 + idx * 8}%`, // Stagger vertically: 25%, 43%, 61%, 79%
+              [city.side]: "5%", // Either left:5% or right:5%
+              transform: "none", // No centering — anchor to edge
+            }}
+          >
+            <div
+              className="text-right font-bold text-white text-sm drop-shadow-lg"
+              style={{
+                textShadow: "1px 1px 3px rgba(0,0,0,0.9)",
+              }}
+            >
+              {city.chinese}
+            </div>
+            <div
+              className="text-right text-xs font-semibold text-amber-300 drop-shadow-md"
+              style={{
+                textShadow: "1px 1px 2px rgba(0,0,0,0.7)",
+              }}
+            >
+              {t.cities[city.id]}
+            </div>
+          </div>
+        ))}
       </div>
 
-      {/* FIXED: Maps and main content - removed RTL reordering */}
-      <div className="relative flex flex-col md:flex-row items-center justify-center w-full h-full px-4 md:px-8 gap-8 md:gap-16">
-        {/* China Map - ALWAYS on the LEFT */}
-        <div className="relative transition-all duration-1000 animate-fadeInScale order-1 md:order-1 z-10 -translate-y-[10px] md:-translate-y-[80px]">
+      {/* Main Content */}
+      <div className="relative flex flex-col md:flex-row items-center justify-center w-full h-full px-4 md:px-8 gap-8 md:gap-10">
+        {/* China Map */}
+        <div className="relative transition-all duration-1000 animate-fadeInScale order-1 md:order-1 z-10  md:-translate-y-[80px]">
           <img
             src="/images/china_map.png"
             alt={t.chinaLabel}
@@ -288,30 +350,30 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Title and CTA Button - ALWAYS in the CENTER */}
-        <div className="relative z-30 text-center max-w-3xl mx-auto order-3 md:order-2 pt-z md:pt-70">
+        {/* Title & CTA */}
+        <div className="relative z-30 text-center max-w-3xl mx-auto order-3 md:order-2 pt-10 md:pt-100 -translate-y-[70px]">
           <h1
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight transition-all duration-1000 animate-fadeInUp"
+            className="text-3xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight transition-all duration-1000 animate-fadeInUp"
             style={{
               fontFamily: "Cairo, sans-serif",
               textShadow: "0 4px 20px rgba(0,0,0,0.9)",
             }}
           >
-            <span className="block text-white drop-shadow-2xl mb-2 text-4xl sm:text-4xl md:text-5xl lg:text-7xl">
+            <span className="block text-white drop-shadow-2xl mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
               {t.titleLine1}{" "}
-              <span className="text-red-600 drop-shadow-2xl mb-2">
+              <span className="text-red-600 drop-shadow-2xl">
                 {t.titleLine2}
               </span>
             </span>
-            <span className="block text-green-600 drop-shadow-2xl mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-5xl">
+            <span className="block text-green-600 drop-shadow-2xl mb-2 text-2xl sm:text-4xl md:text-5xl lg:text-5xl">
               {t.titleLine3}
             </span>
-            <span className="block text-yellow-400 drop-shadow-2xl text-2xl sm:text-3xl md:text-4xl lg:text-3xl">
+            <span className="block text-yellow-400 drop-shadow-2xl text-xl sm:text-3xl md:text-4xl lg:text-3xl">
               {t.titleLine4}
             </span>
           </h1>
 
-          <div className="relative inline-block mt-2 z-50 pointer-events-auto">
+          <div className="relative inline-block mt-1 z-50 pointer-events-auto">
             <a
               href="/services"
               className="group relative block bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-500 text-slate-900 px-10 sm:px-14 py-3 sm:py-4 rounded-2xl text-xl sm:text-2xl font-black hover:from-amber-400 hover:to-yellow-400 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 animate-fadeInScale animation-delay-500 border-3 border-white/20 backdrop-blur-sm overflow-hidden cursor-pointer"
@@ -326,12 +388,32 @@ const HeroSection = () => {
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-800 ease-out"></div>
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 opacity-0 group-hover:opacity-15 transition-opacity duration-300 blur-sm -z-10"></div>
             </a>
-            <div className="absolute inset-0 rounded-2xl border border-amber-400/30 animate-pulse scale-105 pointer-events-none"></div>
+            <div className="absolute inset-0  animate-pulse scale-105 pointer-events-none"></div>
+            
+            {/* Book Now Link */}
+            <a
+              href="https://forms.gle/s3A96XYP8rJG8oSX7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/book relative block mt-4 text-center transition-all duration-300 cursor-pointer"
+            >
+              <span className="relative inline-block text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-400 bg-clip-text text-transparent hover:from-emerald-300 hover:via-green-200 hover:to-emerald-300 transition-all duration-300 animate-pulse-glow"
+                style={{
+                  fontFamily: "Cairo, sans-serif",
+                  textShadow: "0 0 20px rgba(16, 185, 129, 0.5)",
+                  filter: "drop-shadow(0 2px 8px rgba(16, 185, 129, 0.4))",
+                }}
+              >
+                {t.bookNow}
+                <span className="absolute -inset-1 bg-gradient-to-r from-emerald-400/20 to-green-400/20 blur-lg opacity-0 group-hover/book:opacity-100 transition-opacity duration-300 -z-10 rounded-lg"></span>
+              </span>
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-green-400 group-hover/book:w-full transition-all duration-300"></div>
+            </a>
           </div>
         </div>
 
-        {/* Middle East Map - ALWAYS on the RIGHT */}
-        <div className="relative transition-all duration-1000 animate-fadeInScale order-2 md:order-3 z-10 -translate-y-[10px] md:-translate-y-[80px]">
+        {/* Middle East Map */}
+        <div className="relative transition-all duration-1000 animate-fadeInScale order-2 md:order-3 z-10 -translate-y-[20px] md:-translate-y-[80px]">
           <img
             src="/images/middle_east_map.png"
             alt={t.arabLabel}
@@ -342,15 +424,16 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      {/* Flight path - FIXED: This will now work consistently */}
+
+      {/* Flight Path */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none z-10 hidden md:block"
         viewBox="0 0 1200 600"
       >
         <defs>
           <linearGradient id="flightGradient" x1="100%" y1="0%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#ef4444" />
-            <stop offset="50%" stopColor="#f59e0b" />
+            <stop offset="0%" stopColor="#16a34a" />
+            <stop offset="50%" stopColor="#16a34a" />
             <stop offset="100%" stopColor="#16a34a" />
           </linearGradient>
         </defs>
@@ -361,11 +444,17 @@ const HeroSection = () => {
           stroke="url(#flightGradient)"
           strokeWidth="4"
           strokeDasharray="20,8"
-          className="stroke-current text-green-600"
         />
+
+        {/* ✅ SHIP MOVES ALONG PATH — Fixed! */}
         <g>
-          <text fontSize="39" fill="#fff" transform="scale(1, 1)">
-            🚢
+          <image
+            href="/images/cargo_ship.png"
+            width="120"
+            height="60"
+            preserveAspectRatio="xMidYMid meet"
+            transform="translate(-60, -44)" // 👈 Centers the ship on the path
+          >
             <animateMotion
               dur="8s"
               repeatCount="indefinite"
@@ -375,10 +464,9 @@ const HeroSection = () => {
             >
               <mpath href="#flightPathPC" />
             </animateMotion>
-          </text>
+          </image>
         </g>
       </svg>
-
       <style jsx>{`
         @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap");
 

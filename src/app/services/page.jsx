@@ -90,7 +90,7 @@ const translations = {
     },
     additionalTitle: "خدمات أخرى مميزة",
     fullDetails: "التفاصيل الكاملة:",
-    ctaButton: "ابدأ الآن",
+    ctaButton: "أحجز خدمتك الآن",
     serviceSteps: [
       {
         icon: "📞",
@@ -330,7 +330,7 @@ const translations = {
     },
     additionalTitle: "Additional Premium Services",
     fullDetails: "Full Details:",
-    ctaButton: "Get Started",
+    ctaButton: "Book your service now",
     serviceSteps: [
       {
         icon: "📞",
@@ -573,7 +573,7 @@ const translations = {
     },
     additionalTitle: "其他优质服务",
     fullDetails: "完整详情：",
-    ctaButton: "立即开始",
+    ctaButton: "立即预订服务",
     serviceSteps: [
       {
         icon: "📞",
@@ -813,7 +813,7 @@ const translations = {
     },
     additionalTitle: "Services Premium Supplémentaires",
     fullDetails: "Détails complets :",
-    ctaButton: "Commencer",
+    ctaButton: "Réservez votre service maintenant",
     serviceSteps: [
       {
         icon: "📞",
