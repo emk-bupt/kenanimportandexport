@@ -7,9 +7,9 @@ import { useLanguage } from "../context/LanguageContext";
 // ======================
 const translations = {
   ar: {
-    heroTitle: "المنتجات التي نعمل معها",
+    heroTitle: "المنتجات",
     heroSubtitle: "اكتشف نطاق المنتجات التي نتعامل معها والتي لا نتعامل معها",
-    tabWorkWith: "✅ المنتجات التي نعمل بها",
+    tabWorkWith: "✅ المنتجات التي نتعامل معها",
     tabDontWorkWith: "❌ المنتجات التي لا نتعامل معها",
     workWithIntro: "نقدم خدمات الاستيراد لمجموعة واسعة من المنتجات عالية الجودة من الصين منها ما يلي:",
     dontWorkWithIntro: "لأسباب تتعلق باللوائح والقوانين، لا نتعامل مع المنتجات التالية",
@@ -20,7 +20,7 @@ const translations = {
     reasonLabel: "السبب:",
   },
   en: {
-    heroTitle: "Products We Work With",
+    heroTitle: "Products",
     heroSubtitle: "Discover the range of products we handle and those we don't",
     tabWorkWith: "✅ Products We Handle",
     tabDontWorkWith: "❌ Products We Don't Handle",
@@ -33,7 +33,7 @@ const translations = {
     reasonLabel: "Reason:",
   },
   zh: {
-    heroTitle: "我们合作的产品",
+    heroTitle: "产品",
     heroSubtitle: "了解我们处理和不处理的产品范围",
     tabWorkWith: "✅ 我们处理的产品",
     tabDontWorkWith: "❌ 我们不处理的产品",
@@ -46,7 +46,7 @@ const translations = {
     reasonLabel: "原因：",
   },
   fr: {
-    heroTitle: "Produits avec lesquels nous travaillons",
+    heroTitle: "Produits",
     heroSubtitle: "Découvrez les produits que nous gérons et ceux que nous n'acceptons pas",
     tabWorkWith: "✅ Produits que nous gérons",
     tabDontWorkWith: "❌ Produits que nous n'acceptons pas",

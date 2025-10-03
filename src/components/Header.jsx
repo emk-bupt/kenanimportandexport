@@ -101,11 +101,12 @@ const socialLinks = [
   },
 ];
 
+// Updated: use country codes for flag-icons
 const languages = [
-  { code: "ar", flag: "🇸🇦", name: "العربية" },
-  { code: "en", flag: "🇬🇧", name: "English" },
-  { code: "zh", flag: "🇨🇳", name: "中文" },
-  { code: "fr", flag: "🇫🇷", name: "Français" },
+  { code: "ar", country: "sa", name: "العربية" },
+  { code: "en", country: "gb", name: "English" },
+  { code: "zh", country: "cn", name: "中文" },
+  { code: "fr", country: "fr", name: "Français" },
 ];
 
 export default function Navbar() {
@@ -130,6 +131,15 @@ export default function Navbar() {
     setIsLangOpen(false);
   };
 
+  // Helper to render flag
+  const FlagIcon = ({ country, className = "" }) => (
+    <span
+      className={`fi fi-${country} fis ${className}`}
+      style={{ width: "2rem", height: "1.2rem", display: "inline-block" }}
+      aria-hidden="true"
+    />
+  );
+
   return (
     <header
       dir={isRTL ? "rtl" : "ltr"}
@@ -141,7 +151,7 @@ export default function Navbar() {
       }`}
     >
       <div className="flex h-13 items-center px-4 md:px-9 max-w-8xl mx-auto relative">
-        {/* زر القائمة (يسار على الموبايل) */}
+        {/* Mobile menu button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden text-blue-500 hover:text-blue-300 transition-all duration-300 transform hover:scale-110 p-1 rounded-lg hover:bg-blue-700/30 z-10"
@@ -163,7 +173,7 @@ export default function Navbar() {
           </div>
         </button>
 
-        {/* شعار الجوال - مثبت في المنتصف الحقيقي */}
+        {/* Mobile logo (centered) */}
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:hidden z-10">
           <a href="/" className="block group">
             <Image
@@ -177,7 +187,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* شعار سطح المكتب */}
+        {/* Desktop logo */}
         <div
           className={`hidden lg:flex flex-shrink-0 ${
             isRTL ? "lg:ml-8" : "lg:mr-8"
@@ -195,7 +205,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* روابط التنقل - Desktop */}
+        {/* Desktop navigation */}
         <div className="hidden lg:flex items-center justify-center flex-1 gap-1">
           {navigationLinks.map((link, i) => {
             const Icon = link.icon;
@@ -218,9 +228,9 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* الجانب الأيمن/الأيسر - Desktop */}
+        {/* Desktop right side: social, WhatsApp, language */}
         <div className="hidden lg:flex items-center gap-4">
-          {/* وسائل التواصل */}
+          {/* Social links */}
           <div className="flex items-center gap-3">
             {socialLinks.map((link, i) => {
               const Icon = link.icon;
@@ -239,7 +249,7 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* واتساب */}
+          {/* WhatsApp */}
           <a
             href="https://wa.me/+8613681046887"
             target="_blank"
@@ -250,7 +260,7 @@ export default function Navbar() {
             <span className="font-medium whitespace-nowrap">{t.contact}</span>
           </a>
 
-          {/* مبدّل اللغة */}
+          {/* Language selector */}
           <div className="relative">
             <button
               onClick={() => setIsLangOpen(!isLangOpen)}
@@ -261,7 +271,7 @@ export default function Navbar() {
                 size={18}
                 className="text-blue-700 group-hover:text-blue-900"
               />
-              <span className="text-xl">{selectedLang.flag}</span>
+              <FlagIcon country={selectedLang.country} />
               <ChevronDownIcon
                 size={16}
                 className={`text-blue-900 transition-all duration-300 ${
@@ -285,7 +295,7 @@ export default function Navbar() {
                   onClick={() => handleLangChange(lang)}
                   className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-700/40 transition-all duration-200 text-right text-black"
                 >
-                  <span className="text-xl">{lang.flag}</span>
+                  <FlagIcon country={lang.country} />
                   <span className="font-medium whitespace-nowrap">
                     {lang.name}
                   </span>
@@ -298,20 +308,20 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* يمين الموبايل: اللغة + واتساب */}
+        {/* Mobile: language + WhatsApp */}
         <div
           className={`flex lg:hidden items-center gap-3 ${
             isRTL ? "mr-auto" : "ml-auto"
           }`}
         >
-          {/* Language & WhatsApp buttons — same as before */}
+          {/* Language */}
           <div className="relative">
             <button
               onClick={() => setIsLangOpen(!isLangOpen)}
               className="flex items-center justify-center p-2.5 rounded-full hover:bg-blue-100 text-blue-700 transition-all duration-300"
               title="اختيار اللغة"
             >
-              <span className="text-xl">{selectedLang.flag}</span>
+              <FlagIcon country={selectedLang.country} />
             </button>
             <div
               className={`absolute ${
@@ -328,7 +338,7 @@ export default function Navbar() {
                   onClick={() => handleLangChange(lang)}
                   className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-blue-50 transition-all duration-200 text-right"
                 >
-                  <span className="text-lg">{lang.flag}</span>
+                  <FlagIcon country={lang.country} />
                   <span className="font-medium text-black whitespace-nowrap">
                     {lang.name}
                   </span>
@@ -340,6 +350,7 @@ export default function Navbar() {
             </div>
           </div>
 
+          {/* WhatsApp */}
           <a
             href="https://wa.me/+8613681046887"
             target="_blank"
@@ -352,7 +363,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* القائمة الجانبية (موبايل) */}
+      {/* Mobile menu */}
       <div
         className={`lg:hidden bg-gradient-to-br from-slate-100/95 to-white/95 backdrop-blur-xl shadow-xl transition-all duration-500 ease-out overflow-hidden ${
           isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
@@ -398,7 +409,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* خلفية لإغلاق قائمة اللغة */}
+      {/* Backdrop to close language menu */}
       {isLangOpen && (
         <div
           className="fixed inset-0 z-40"

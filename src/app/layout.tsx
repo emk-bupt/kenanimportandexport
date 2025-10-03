@@ -5,6 +5,7 @@ import { Tajawal } from "next/font/google";
 import Navbar from "../components/Header";
 import Footer from "../components/Footer";
 import { LanguageProvider } from "../app/context/LanguageContext";
+import "flag-icons/css/flag-icons.min.css";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],

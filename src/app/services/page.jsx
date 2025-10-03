@@ -1865,7 +1865,7 @@ const ServicesPage = () => {
       <section className="relative z-10 py-16 px-4">
         <div className="text-center">
           <button
-            onClick={() => window.open("https://wa.me/+8613681046887", "_blank")}
+            onClick={() => window.open("https://forms.gle/s3A96XYP8rJG8oSX7", "_blank")}
             className="group relative inline-block bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-500 text-slate-900 px-16 py-5 rounded-2xl text-2xl md:text-3xl font-black hover:from-amber-400 hover:to-yellow-400 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 border-4 border-white/20 backdrop-blur-sm overflow-hidden cursor-pointer shadow-2xl animate-fadeInScale"
           >
             <span className="relative z-10 flex items-center gap-3">
