@@ -150,7 +150,7 @@ export default function Navbar() {
           : "bg-white backdrop-blur-md shadow-lg border-b border-gray-100"
       }`}
     >
-      <div className="flex h-13 items-center px-4 md:px-9 max-w-8xl mx-auto relative">
+      <div className="flex h-12 items-center px-4 md:px-2 max-w-8xl mx-auto relative">
         {/* Mobile menu button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
