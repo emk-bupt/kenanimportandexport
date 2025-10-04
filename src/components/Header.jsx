@@ -92,7 +92,7 @@ const socialLinks = [
   },
   {
     icon: FaFacebook,
-    href: "https://www.facebook.com/profile.php?id=61581469569569",
+    href: "https://www.facebook.com/share/15SryBtkR7/",
     labelKey: 2,
   },
   {

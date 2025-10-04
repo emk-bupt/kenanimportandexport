@@ -91,7 +91,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: FaTiktok, href: "https://www.tiktok.com/@kenanimpexpco", label: "TikTok" },
     { icon: FaInstagram, href: "https://www.instagram.com/kenanimpexp/", label: "Instagram" },
-    { icon: FaFacebook, href: "https://www.facebook.com/profile.php?id=61581469569569", label: "Facebook" },
+    { icon: FaFacebook, href: "https://www.facebook.com/share/15SryBtkR7/", label: "Facebook" },
     { icon: FaTelegramPlane, href: "https://t.me/kenanimpexp", label: "Telegram" },
   ];
 
